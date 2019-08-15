@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="MySQL for 5.1 - bwin@localhost" uuid="e13dce5d-18ba-4eb5-9a69-ef0b40f3fee0">
+    <data-source name="bwin" uuid="60e47705-00da-4980-84c5-aec68299d06a">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
