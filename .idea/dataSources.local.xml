@@ -3,7 +3,6 @@
   <component name="dataSourceStorageLocal">
     <data-source name="bwin" uuid="60e47705-00da-4980-84c5-aec68299d06a">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
-      <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
     </data-source>
   </component>
