@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class ConnectMysql {
 
-    private static Logger logger = LoggerFactory.getLogger(PropertiesUtil.class);
+//    private static Logger logger = LoggerFactory.getLogger(PropertiesUtil.class);
 
     private static BasicDataSource dataSource;
 
@@ -27,16 +27,17 @@ public class ConnectMysql {
     private static String maxWait = PropertiesUtil.getProperty("db.maxWait", "10");
     private static String defaultAutoCommit = PropertiesUtil.getProperty("db.defaultAutoCommit", "true");
     private static String minEvictableIdelTimeMillis = PropertiesUtil.getProperty("db.minEvictableIdleTimeMillis", "3600000");
-
+    private static String driverName = PropertiesUtil.getProperty("db.driverClassName", "com.mysql.cj.jdbc.Driver");
+    private static String driverLocation = PropertiesUtil.getProperty("db.driverLocation", "C:\\Users\\zackg\\Documents\\lib\\mysql-connector-java-5.1.46\\mysql-connector-java-5.1.46-bin.jar");
 
     static{
         if (dataSource == null)
         {
             BasicDataSource ds = new BasicDataSource();
+            ds.setDriverClassName(driverName);
             ds.setUrl(URL);
             ds.setUsername(USERNAME);
             ds.setPassword(PASSWORD);
-
 
             ds.setMinIdle(Integer.parseInt(minIdel));
             ds.setMaxIdle(Integer.parseInt(maxIdle));
@@ -52,11 +53,23 @@ public class ConnectMysql {
         } else {
             try {
                 connection = dataSource.getConnection();
+                return connection;
             } catch (SQLException e) {
                 e.printStackTrace();
-                logger.error("连接数据库有异常");
-            } finally {
-                return connection;
+//                logger.error("连接数据库有异常");
+                return null;
+            }
+        }
+    }
+
+    public static void closeConnection() {
+        if (dataSource != null) {
+            try {
+                connection.close();
+                dataSource.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+//                logger.error("关闭数据库异常");
             }
         }
     }
